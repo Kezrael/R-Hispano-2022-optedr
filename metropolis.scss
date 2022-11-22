@@ -1,0 +1,19 @@
+/*-- scss:defaults --*/
+
+// fonts
+@import 'https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap';
+
+$font-family-sans-serif: "Fira Sans";
+$presentation-heading-color: #203141;
+$presentation-title-slide-text-align: "left";
+$presentation-font-size-root: 30px;
+$code-block-font-size: 0.75em;
+//$presentation-font-smaller: 1;
+$presentation-h1-font-size: 1.5em !default;
+
+
+/*-- scss:rules --*/
+
+details>summary {
+  font-size: 0.1em;
+}
