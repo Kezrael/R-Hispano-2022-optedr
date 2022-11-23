@@ -9,7 +9,7 @@
 <link href="optedr_presentation_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.0.36">
 
-  <title>quarto-inputcaff7197</title>
+  <title>quarto-input88aad12d</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -384,7 +384,7 @@
 
 <section id="title-slide" class="center">
   <h1 class="title"><div>
-<p>optedr: An R package</p>
+<p>optedr: un paquete de diseño óptimo de experimentos</p>
 </div>
 <div style="margin-bottom: 60px">
 <hr color="orange" width="1000" align="left">
@@ -424,6 +424,7 @@
 </section>
 <section id="fim" class="slide level2">
 <h2>FIM</h2>
+<p>La Matriz de Información de Fisher se define como</p>
 <p><span class="math display">\[
 M(\xi,\theta)=\sum_{x\in\mathcal{X}}f(x)f^t(x)\xi(x),
 \]</span></p>
@@ -722,23 +723,37 @@ Optimal design for  D-Optimality :
 <h1>Diseños aumentados</h1>
 <hr color="orange" width="600" align="left">
 </section>
+<section id="región-de-puntos-candidatos" class="slide level2">
+<h2>Región de puntos candidatos</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">get_augment_region</span>(<span class="st">"D-Optimality"</span>,</span>
+<span id="cb17-2"><a href="#cb17-2"></a>               <span class="at">init_design =</span> resArr.D<span class="sc">$</span>optdes, </span>
+<span id="cb17-3"><a href="#cb17-3"></a>               <span class="at">alpha =</span> <span class="fl">0.3</span>,</span>
+<span id="cb17-4"><a href="#cb17-4"></a>               <span class="at">model =</span> y <span class="sc">~</span> a <span class="sc">*</span> <span class="fu">exp</span>(<span class="sc">-</span>b<span class="sc">/</span>x),</span>
+<span id="cb17-5"><a href="#cb17-5"></a>               <span class="at">parameters =</span> <span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>),</span>
+<span id="cb17-6"><a href="#cb17-6"></a>               <span class="at">par_values =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1500</span>),</span>
+<span id="cb17-7"><a href="#cb17-7"></a>               <span class="at">design_space =</span> <span class="fu">c</span>(<span class="dv">212</span>, <span class="dv">422</span>),</span>
+<span id="cb17-8"><a href="#cb17-8"></a>               <span class="at">calc_optimal_design =</span> F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+<img data-src="img/augment.png" style="width:110.0%" class="r-stretch quarto-figure-center"><p class="caption">Región de puntos candidatos</p></section>
 <section id="diseños-aumentados-1" class="slide level2">
 <h2>Diseños aumentados</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>aug_arr <span class="ot">&lt;-</span> <span class="fu">augment_design</span>(</span>
-<span id="cb17-2"><a href="#cb17-2"></a>               <span class="st">"D-Optimality"</span>,</span>
-<span id="cb17-3"><a href="#cb17-3"></a>               <span class="at">init_design =</span> resArr.D<span class="sc">$</span>optdes, </span>
-<span id="cb17-4"><a href="#cb17-4"></a>               <span class="at">alpha =</span> <span class="fl">0.3</span>,</span>
-<span id="cb17-5"><a href="#cb17-5"></a>               <span class="at">model =</span> y <span class="sc">~</span> a <span class="sc">*</span> <span class="fu">exp</span>(<span class="sc">-</span>b<span class="sc">/</span>x),</span>
-<span id="cb17-6"><a href="#cb17-6"></a>               <span class="at">parameters =</span> <span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>),</span>
-<span id="cb17-7"><a href="#cb17-7"></a>               <span class="at">par_values =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1500</span>),</span>
-<span id="cb17-8"><a href="#cb17-8"></a>               <span class="at">design_space =</span> <span class="fu">c</span>(<span class="dv">212</span>, <span class="dv">422</span>),</span>
-<span id="cb17-9"><a href="#cb17-9"></a>               <span class="at">calc_optimal_design =</span> F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>aug_arr <span class="ot">&lt;-</span> <span class="fu">augment_design</span>(</span>
+<span id="cb18-2"><a href="#cb18-2"></a>               <span class="st">"D-Optimality"</span>,</span>
+<span id="cb18-3"><a href="#cb18-3"></a>               <span class="at">init_design =</span> resArr.D<span class="sc">$</span>optdes, </span>
+<span id="cb18-4"><a href="#cb18-4"></a>               <span class="at">alpha =</span> <span class="fl">0.3</span>,</span>
+<span id="cb18-5"><a href="#cb18-5"></a>               <span class="at">model =</span> y <span class="sc">~</span> a <span class="sc">*</span> <span class="fu">exp</span>(<span class="sc">-</span>b<span class="sc">/</span>x),</span>
+<span id="cb18-6"><a href="#cb18-6"></a>               <span class="at">parameters =</span> <span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>),</span>
+<span id="cb18-7"><a href="#cb18-7"></a>               <span class="at">par_values =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1500</span>),</span>
+<span id="cb18-8"><a href="#cb18-8"></a>               <span class="at">design_space =</span> <span class="fu">c</span>(<span class="dv">212</span>, <span class="dv">422</span>),</span>
+<span id="cb18-9"><a href="#cb18-9"></a>               <span class="at">calc_optimal_design =</span> F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Eficiencia de <span class="math inline">\(80\%\)</span></p>
 <p>Añadiendo los puntos 260 y 380 con peso 0.15</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>aug_arr</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>aug_arr</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     Point    Weight
 1 329.2966 0.3500048
@@ -747,21 +762,7 @@ Optimal design for  D-Optimality :
 4 380.0000 0.1500000</code></pre>
 </div>
 </div>
-</section>
-<section id="región-de-puntos-candidatos" class="slide level2">
-<h2>Región de puntos candidatos</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="fu">get_augment_region</span>(<span class="st">"D-Optimality"</span>,</span>
-<span id="cb20-2"><a href="#cb20-2"></a>               <span class="at">init_design =</span> resArr.D<span class="sc">$</span>optdes, </span>
-<span id="cb20-3"><a href="#cb20-3"></a>               <span class="at">alpha =</span> <span class="fl">0.3</span>,</span>
-<span id="cb20-4"><a href="#cb20-4"></a>               <span class="at">model =</span> y <span class="sc">~</span> a <span class="sc">*</span> <span class="fu">exp</span>(<span class="sc">-</span>b<span class="sc">/</span>x),</span>
-<span id="cb20-5"><a href="#cb20-5"></a>               <span class="at">parameters =</span> <span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>),</span>
-<span id="cb20-6"><a href="#cb20-6"></a>               <span class="at">par_values =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1500</span>),</span>
-<span id="cb20-7"><a href="#cb20-7"></a>               <span class="at">design_space =</span> <span class="fu">c</span>(<span class="dv">212</span>, <span class="dv">422</span>),</span>
-<span id="cb20-8"><a href="#cb20-8"></a>               <span class="at">calc_optimal_design =</span> F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-
-<img data-src="img/augment.png" style="width:110.0%" class="r-stretch quarto-figure-center"><p class="caption">Región de puntos candidatos</p></section></section>
+</section></section>
 <section>
 <section id="redondeo-eficiente" class="title-slide slide level1 center">
 <h1>Redondeo eficiente</h1>
